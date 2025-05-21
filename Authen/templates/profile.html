@@ -1,0 +1,74 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+
+<style>
+.profile-container {
+  max-width: 700px;
+  width: 100%;
+  margin: 60px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  color: #2c3e50;
+  font-family: 'Arial', sans-serif;
+  display: grid;
+  gap: 25px;
+}
+
+.profile-container > div:first-child {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #4c5c76;
+  text-align: center;
+}
+
+.profile-details p {
+  font-size: 1rem;
+  margin-bottom: 12px;
+}
+
+.profile-details strong {
+  color: #4c5c76;
+}
+
+.profile-container a {
+  display: inline-block;
+  margin: 8px 10px 0 0;
+  padding: 10px 20px;
+  background-color: #4c5c76;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.profile-container a:hover {
+  background-color: #2f4155;
+}
+</style>
+
+
+<div class="profile-container">
+
+    <div>Profile</div>
+
+    <div class="profile-details">
+        <p><strong>Full Name </strong> {{ request.user.first_name }} {{ request.user.last_name }}</p>
+        <p><strong>Username </strong> {{ request.user.username }}</p>
+        <p><strong>Email </strong> {{ request.user.email }}</p>
+    </div>
+
+    <div> 
+            <a href="{% url 'changepass' %}">Change Password</a>
+            <a href="{% url 'update_profile' %}">Update Profile</a>
+            <a href="{% url 'user_logout' %}">Logout</a>
+    </div>
+
+</div>
+
+{% endblock content %}

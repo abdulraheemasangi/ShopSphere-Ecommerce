@@ -1,0 +1,33 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+<div class="Details-container">
+
+            <div class="heading">Details Of The Product</div>
+
+        <div class="details-flex">
+
+            <div class="left-side-container">
+
+                <h2>{{ data.pname }}</h2>
+                <p>Description : {{ data.pdesc }}</p>
+                <p>Price  ₹ {{ data.price }}</p>
+                
+                <div class="bottons-container">
+                    <a href="{% url 'addtocart' data.id %}">Add To Cart</a>
+                    <a href="{% url 'home' %}">Back</a>
+                </div>
+                
+            </div>
+
+            <div class="right-side-container">
+            <img src="{{ data.pimages.url }}" >
+            </div>
+
+
+        </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,124 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<style>
+.login-container {
+  max-width: 400px;
+  min-height: 100vh;          /* full viewport height */
+  margin: 0 auto;             /* horizontally center */
+  padding: 20px 30px;         /* adjusted padding */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;    /* vertically center form */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: #2c3e50;
+}
+
+.login-container > div:first-child {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #4c5c76;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.login-container label {
+  font-size: 1rem;
+  color: #4c5c76;
+  margin-bottom: 4px;
+}
+
+.login-container input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.login-container input:focus {
+  border-color: #4c5c76;
+  outline: none;
+}
+
+.login-container input[type="submit"] {
+  padding: 12px;
+  font-size: 1rem;
+  background-color: #4c5c76;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-container input[type="submit"]:hover {
+  background-color: #2f4155;
+}
+
+/* Login message box */
+.login-message {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #f1f1f1;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  text-align: center;
+  color: #4c5c76;
+  font-size: 1rem;
+}
+
+/* Responsive tweak for short screens */
+@media (max-height: 600px) {
+  .login-container {
+    min-height: auto;
+    margin: 20px auto;
+  }
+}
+</style>
+
+
+
+<div class="login-container">
+
+  <div>Login</div>
+  
+
+{% if messages %}
+        {% for message in messages %}
+            <div class="login-message">{{ message }}</div>
+        {% endfor %}
+{% endif %}
+
+
+
+<form action="{% url 'user_login' %}" method="POST">
+
+    {% csrf_token %}
+
+    <label for="">User Name</label>
+    <input type="text" name="username">
+
+    <label for="">Password</label>
+    <input type="password" name="password">
+
+    <input type="submit" value="Login">
+
+</form>
+
+
+</div>
+
+
+
+{% endblock content %}

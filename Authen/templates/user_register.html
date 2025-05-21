@@ -1,0 +1,116 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<style>
+  .Register-container {
+  max-width: 400px;         /* slightly narrower for better fit */
+  min-height: 100vh;        /* full viewport height */
+  margin: 0 auto;           /* center horizontally */
+  padding: 20px 30px;       /* less padding top/bottom */
+  box-sizing: border-box;   /* include padding in size */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  /* vertically center form */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: #2c3e50;
+}
+
+.Register-container > div:first-child {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #4c5c76;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.Register-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.Register-container label {
+  font-size: 1rem;
+  color: #4c5c76;
+  margin-bottom: 4px;
+}
+
+.Register-container input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.Register-container input:focus {
+  border-color: #4c5c76;
+  outline: none;
+}
+
+.Register-container input[type="submit"] {
+  padding: 12px;
+  font-size: 1rem;
+  background-color: #4c5c76;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.Register-container input[type="submit"]:hover {
+  background-color: #2f4155;
+}
+
+/* Optional: limit vertical scroll on small screens */
+@media (max-height: 600px) {
+  .Register-container {
+    min-height: auto;
+    margin: 20px auto;
+  }
+}
+</style>
+
+<div class="Register-container">
+
+  
+  <div>Register Here</div>
+
+
+{% if messages %}
+        {% for message in messages %}
+            <div class="register-message">{{ message }}</div>
+        {% endfor %}
+{% endif %}
+
+
+<form action="{% url 'user_register' %}" method="POST">
+
+    {% csrf_token %}
+
+    <label for="">First Name</label>
+    <input type="text" name="firstname" >
+
+    <label for="">Last Name</label>
+    <input type="text" name="lastname" >
+
+    <label for="">Email</label>
+    <input type="email" name="email" >
+
+    <label for="">User Name</label>
+    <input type="text" name="username">
+    
+    <label for="">Password</label>
+    <input type="password" name="password">
+    
+    <input type="submit" value="Register">
+    
+  </form>
+  
+</div>
+
+{% endblock content %}

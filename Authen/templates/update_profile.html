@@ -1,0 +1,138 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<style>
+.update-profile-container {
+  max-width: 600px;
+  width: 100%;
+  margin: 60px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: #2c3e50;
+  font-family: 'Arial', sans-serif;
+
+  display: grid;
+  place-items: center;
+  min-height: calc(100vh - 120px); /* allows vertical centering without touching <body> */
+}
+
+.update-profile-container > div:first-child {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #4c5c76;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.update-profile-form {
+  width: 100%;
+}
+
+.update-profile-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.update-profile-form label {
+  font-size: 1rem;
+  color: #4c5c76;
+  margin-bottom: 5px;
+}
+
+.update-profile-form input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  color: #333;
+}
+
+.update-profile-form input:focus {
+  border-color: #4c5c76;
+  outline: none;
+}
+
+.update-profile-form button {
+  padding: 12px;
+  font-size: 1rem;
+  background-color: #4c5c76;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.update-profile-form button:hover {
+  background-color: #2f4155;
+}
+
+.update-message {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #f1f1f1;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  text-align: center;
+  color: #4c5c76;
+  font-size: 1rem;
+}
+
+.update-profile-container a {
+  margin-top: 15px;
+  color: #4c5c76;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  text-align: center;
+}
+
+.update-profile-container a:hover {
+  text-decoration: underline;
+}
+</style>
+
+
+<div class="update-profile-container">
+
+    <div>Update Profile</div>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="update-message">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="update-profile-form">
+
+      <form method="POST">
+        
+        {% csrf_token %}
+
+        <label>Username</label>
+        <input type="text" name="username" value="{{ user.username }}">
+
+        <label>First Name</label>
+        <input type="text" name="firstname" value="{{ user.first_name }}" >
+        
+        <label>Last Name</label>
+        <input type="text" name="lastname" value="{{ user.last_name }}" >
+        
+        <label>Email</label>
+        <input type="email" name="email" value="{{ user.email }}" >
+        
+        <button type="submit">Update Profile</button>
+      </form>
+    </div>
+
+    <div>
+      <a href="{% url 'profile' %}">Back to Profile</a>
+    </div>
+
+</div>
+
+{% endblock %}

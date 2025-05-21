@@ -1,0 +1,63 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    
+
+<div class="category-container">
+    {% for i in category_data %}
+        <form action="" >
+            <input type="submit" value="{{i.pcategory}}" name="category_form">
+        </form>
+    {% endfor %}
+    <div>
+        <a href="{% url 'home' %}">All Products</a>
+    </div>
+</div>
+
+<center>
+<div>Products</div>  
+</center>
+
+
+<div class="cards-container">
+
+{% for i in data %}
+
+<div class="cards">
+
+        <div class="important-massage">
+
+            {% if trend %}
+            <p class="trending">Trending Now !</p>
+            {% endif %}
+            
+            {% if Off %}
+            <p class="off">Flat 40% Off</p>
+            {% endif %}
+
+        </div>
+
+        <div class="card-content">
+            <img src="{{ i.pimages.url }}" width="150"  >
+            <h3>{{ i.pname }}</h3>
+            <p>{{ i.pdesc | truncatewords:10 }}</p>
+            <p class="price">Price  ₹ {{ i.price }} /-</p>
+            <a href="{% url 'addtocart' i.id %}">Add To Cart</a>
+            <a href="{% url 'details' i.id %}">View Details</a>
+        </div>
+   
+</div>
+
+
+{% empty %}
+
+<div class="empty-result">
+  No Result Found ! <a href="{% url 'home' %}">Back</a>
+</div>
+
+
+{% endfor %}
+</div>
+
+
+{% endblock content %}

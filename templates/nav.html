@@ -1,0 +1,93 @@
+{% load static %}
+
+<nav class="navbar">
+
+  <div class="logo">
+    <img src="{% static 'images/logo.png' %}" alt="Site Logo">
+    <p class="logo-name">ShopSphere</p>
+  </div>
+
+
+  <ul class="nav-links">
+
+  {% if user.is_authenticated %}
+
+    {% if profile_nav %}
+        
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'cart' %}">Cart</a></li>
+        <li><a href="{% url 'profile' %}">Profile<br>({{request.user.first_name}})</a></li>
+        <li><a href="{% url 'user_logout' %}">Logout</a></li>
+        <li><a href="{% url 'aboutus' %}">About Us</a></li>
+        <li><a href="{% url 'support' %}">Support</a></li>
+
+    {% else %}
+
+        <div>
+          <form action="">
+              <input type="text" placeholder="Search here !" name="q">
+              <button type="submit">Search</button>
+          </form>
+        </div>
+
+        <div>
+          <form action="">
+            <input type="submit" name="Trending" value="Trending">
+          </form>
+        </div>
+
+        <div>
+          <form action="">
+            <input type="submit" name="Offer" value="Offers">
+          </form>
+        </div>
+        
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'cart' %}">Cart</a></li>
+        <li><a href="{% url 'profile' %}">Profile<br>({{request.user.first_name}})</a></li>
+        <li><a href="{% url 'user_logout' %}">Logout</a></li>
+        <li><a href="{% url 'aboutus' %}">About Us</a></li>
+        <li><a href="{% url 'support' %}">Support</a></li>
+    {% endif %}
+
+    {% else %}
+
+    {% if loginnav %}
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="{% url 'user_login' %}">Login</a></li>
+      <li><a href="{% url 'user_register' %}">Register</a></li>
+      <li><a href="{% url 'aboutus' %}">About Us</a></li>
+      <li><a href="{% url 'support' %}">Support</a></li>
+      
+      {% else %}
+      
+        <div>
+          <form action="">
+              <input type="text" placeholder="Search here !" name="q">
+              <button type="submit">Search</button>
+          </form>
+        </div>
+        
+        <div>
+          <form action="">
+            <input type="submit" name="Trending" value="Trending">
+          </form>
+        </div>
+        
+        <div>
+          <form action="">
+            <input type="submit" name="Offer" value="Offers">
+          </form>
+        </div>
+        
+        
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'user_login' %}">Login</a></li>
+        <li><a href="{% url 'aboutus' %}">About Us</a></li>
+        <li><a href="{% url 'support' %}">Support</a></li>
+      
+      {% endif %}
+      {% endif %}
+      
+    </ul>
+</nav>

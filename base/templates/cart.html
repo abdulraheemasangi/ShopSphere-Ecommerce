@@ -1,0 +1,73 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+
+<style>
+
+a .in-de-link {
+        padding: 2px 6px;
+        margin: 0 5px;
+        background-color: #eee;
+        border: 1px solid #ccc;
+        text-decoration: none;
+        color: black;
+    }
+
+a .in-de-link:hover {
+        background-color: #ddd;
+    }
+</style>
+
+<section class="cart-container">
+
+<div>Cart</div>
+
+<div class="table-conatiner">
+    <table>
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total Price</th>
+                <th>Actions</th>
+                <th>Remove</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for i in cartproducts %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{i.pname}}</td>
+                <td>{{i.pcategory.name}}</td>
+                <td>{{i.price}}</td>
+                <td>{{i.quantity}}</td>
+                <td>{{i.totalprice}}</td>
+                <td>
+                    <a class="in-de-link" href="{% url 'decrease_quantity' i.id %}">-</a>
+                    {{ i.quantity }}
+                    <a class="in-de-link"href="{% url 'increase_quantity' i.id %}">+</a>
+                </td>
+                
+                <td><a href="{% url 'remove' i.id %}">remove</a></td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+<div>
+
+<div class="end-conatiner">
+    <h3>Total Amount = {{ta}}</h3>
+
+    <a href="{% url 'shipping' %}">Proceed to checkout</a>
+</div>
+
+
+</section>
+
+{% endblock content %}

@@ -1,0 +1,95 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<style>
+.changepass-container {
+  max-width: 500px;
+  margin: 60px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: #2c3e50;
+  font-family: 'Arial', sans-serif;
+}
+
+.changepass-container > div:first-child {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #4c5c76;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.changepass-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.changepass-container input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  color: #333;
+}
+
+.changepass-container input:focus {
+  border-color: #4c5c76;
+  outline: none;
+}
+
+.changepass-container button {
+  padding: 12px;
+  font-size: 1rem;
+  background-color: #4c5c76;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.changepass-container button:hover {
+  background-color: #2f4155;
+}
+
+/* Updated message class */
+.Change-massage {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #f1f1f1;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  text-align: center;
+  color: #4c5c76;
+  font-size: 1rem;
+}
+
+</style>
+
+<div class="changepass-container">
+
+  <div>Change Your Password</div>
+
+  
+    {% if messages %}
+        {% for message in messages %}
+            <div class="Change-massage">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+  
+<div>
+  <form method="POST">
+    {% csrf_token %}
+    <input type="password" name="password" placeholder="New Password" required>
+    <button type="submit">Change Password</button>
+  </form>
+</div>
+
+</div>
+
+{% endblock content %}
