@@ -156,3 +156,29 @@ Created by Abdul Raheem - LinkedIn | Email: abdulraheem.asangi@gmail.com
 8. Open your browser and visit :
 
     http://127.0.0.1:8000/
+
+## Screenshots
+
+### Homepage
+![Home Page](Screenshots/Home%20Page.png)
+
+### Details Page
+![Details Page](Screenshots/Details%20page.png)
+
+### Cart Page
+![Cart Page](Screenshots/Cart%20Page.png)
+
+### Offers Page
+![Offers Page](Screenshots/Offer%20Page.png)
+
+### Trending Page
+![Trending Page](Screenshots/Trending%20page.png)
+
+### Profile Page
+![Profile Page](Screenshots/Profile.png)
+
+### Login Page
+![Login Page](Screenshots/Login%20Page.png)
+
+### Register Page
+![Register Page](Screenshots/Register%20page.png)
